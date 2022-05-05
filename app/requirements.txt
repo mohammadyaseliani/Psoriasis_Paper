@@ -1,8 +1,0 @@
-streamlit
-streamlit_option_menu
-tensorflow
-numpy
-cv
-Pillow
-opencv-python-headless
-click==8.0.4
