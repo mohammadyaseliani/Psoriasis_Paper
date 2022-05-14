@@ -282,7 +282,7 @@ else:
   if prediction_binary==1:
     import pandas as pd
     X = pd.read_excel('treatments.xlsx')
-    X=np.array(X)
+    X=np.array(X, dtype=np.float64)
     treatment=''
 
     interval=[[2, 10],[2, 10],[2, 10],[2, 10], [2, 10],[2, 10],[2, 10],[2, 10],[2, 10], [2, 10],[2, 10],[2, 10],[2, 10],[2, 10], [2, 10]]
