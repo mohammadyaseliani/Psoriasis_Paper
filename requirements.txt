@@ -2,6 +2,7 @@ streamlit
 streamlit_option_menu
 tensorflow
 numpy
+pandas
 cv
 Pillow
 opencv-python-headless
