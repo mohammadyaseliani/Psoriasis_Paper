@@ -1,12 +1,12 @@
 # Importing the Necessary Libraries for Loading the Models 
 
- 
 import streamlit as st
 import tensorflow as tf
 import pickle
 import numpy as np
 import requests
 import tensorflow.compat.v1.keras.backend as K
+import pandas as pd
 from streamlit_option_menu import option_menu
 
 st.set_page_config(layout="centered")
@@ -276,201 +276,75 @@ else:
   prediction_binary=import_and_predict_binary(image, classifier1, classifier2, classifier3, weights_binary)
   prediction_MultiClass=import_and_predict_MultiClass(image, classifier4, classifier5, classifier6, weights_MultiClass)
   result=''
+  import pandas as pd
+  X = pd.read_excel('treatments.xlsx')
   if prediction_binary==0:
     st.info('**The input image is not psoriatic. The possible skin conditions include eczema, seborrheic dermatitis, keratosis pilaris, irritant or allergic contact dermatitis, pityriasis rosea, ringworms, hives, acne, and rosacea.**')
   if prediction_binary==1:
     treatment=''
-    X_erythrodermic=[[5, 4, 3, 2, 1], [5, 3, 2, 2, 1], [7, 8, 9, 2, 1], [5, 8, 3, 7, 5], [4, 9, 2, 2, 7], [5, 5, 3, 2, 9], [9, 8, 5, 7, 10]]
-    X_guttate=[[5, 4, 3, 2, 1], [4, 2, 2, 5, 4], [7, 8, 9, 8, 5], [5, 4, 3, 9, 9], [4, 3, 9, 8, 7], [5, 8, 3, 7, 5], [5, 4, 3, 4, 3], [8, 3, 2, 2, 1], 
-               [9, 4, 3, 1, 7], [2, 5, 3, 5, 6]]
-    X_inverse=[[5, 4, 2, 1], [4, 3, 5, 4], [7, 8, 9, 1], [5, 4, 7, 8], [4, 3, 4, 5], [5, 5, 3, 2], [9, 8, 4, 3]]
-    X_nail=[[5, 4, 3, 4, 5, 6, 7, 8, 9, 1, 1], [5, 8, 2, 1, 4, 6, 7, 8, 9, 1, 1], [6, 4, 3, 4, 5, 6, 7, 8, 9, 5, 1], 
-            [5, 4, 3, 4, 5, 6, 2, 4, 9, 1, 1], [9, 7, 3, 4, 5, 6, 7, 2, 9, 4, 1], [5, 9, 2, 1, 5, 5, 8, 7, 8, 8, 8], 
-            [6, 8, 1, 4, 5, 4, 7, 8, 9, 1, 1], [2, 4, 3, 1, 3, 6, 7, 8, 9, 8, 1], [2, 5, 3, 4, 5, 6, 7, 9, 9, 5, 7], 
-            [4, 4, 2, 4, 1, 5, 1, 8, 9, 1, 10], [5, 5, 3, 1, 5, 1, 8, 4, 9, 8, 1], [3, 2, 3, 1, 5, 6, 7, 8, 9, 2, 7], 
-            [5, 4, 3, 7, 2, 1, 2, 8, 9, 1, 1], [5, 4, 3, 4, 5, 6, 7, 8, 9, 1, 1], [4, 4, 3, 8, 9, 8, 7, 8, 9, 7, 1], 
-            [9, 8, 7, 4, 2, 4, 4, 4, 4, 1, 1], [1, 8, 7, 4, 3, 4, 4, 5, 6, 7, 1]]
-    X_pustular=[[8, 9, 3, 8, 5, 3, 8, 9, 1, 3], [5, 4, 3, 5, 5, 3, 8, 9, 4, 9], [2, 4, 3, 4, 5, 3, 8, 9, 7, 10], [5, 4, 3, 4, 3, 4, 8, 3, 5, 2], 
-                [7, 4, 4, 8, 5, 7, 8, 9, 5, 2], [2, 5, 3, 4, 5, 3, 8, 9, 3, 9], [1, 4, 3, 4, 5, 3, 8, 9, 4, 1], [4, 8, 4, 9, 2, 3, 8, 9, 3, 4],
-               [2, 4, 5, 5, 7, 3, 8, 9, 4, 8], [1, 4, 3, 5, 5, 3, 2, 9, 7, 8], [2, 9, 3, 4, 5, 9, 8, 9, 5, 1], [1, 4, 3, 4, 1, 3, 8, 4, 2, 3]]
-    X_plaque=[[8, 9, 3, 8, 5, 3, 5, 8], [5, 4, 3, 5, 5, 3, 2, 9], [2, 4, 3, 4, 5, 6, 1, 3], [5, 4, 3, 4, 3, 4, 3, 4], 
-                [7, 4, 4, 8, 5, 7, 4, 3], [2, 5, 3, 4, 5, 3, 1, 2], [1, 4, 3, 4, 5, 3, 1, 1], [4, 8, 4, 9, 2, 3, 2, 4],
-               [2, 4, 5, 5, 7, 3, 2, 4], [1, 4, 3, 5, 5, 3, 3, 4], [2, 9, 3, 4, 5, 9, 8, 5], [1, 4, 3, 4, 1, 3, 4, 9],
-               [4, 4, 8, 8, 7, 8, 4, 3], [2, 4, 3, 3, 5, 3, 5, 4], [1, 9, 2, 4, 3, 9, 9, 9], [1, 9, 2, 4, 3, 9, 1, 2],
-             [1, 9, 2, 4, 3, 9, 5, 2]]
-    X_arthritis=[[5, 4, 3, 4, 5, 6, 7, 8, 9, 1, 1], [5, 8, 2, 1, 4, 6, 7, 8, 9, 1, 1], [6, 4, 3, 4, 5, 6, 7, 8, 9, 5, 1], 
-            [5, 4, 3, 4, 5, 6, 2, 4, 7, 1, 1], [9, 7, 1, 4, 1, 6, 7, 2, 9, 4, 1], [5, 9, 2, 1, 1, 5, 8, 7, 8, 8, 8], 
-            [6, 8, 1, 4, 5, 4, 7, 8, 9, 1, 1], [2, 4, 1, 1, 3, 6, 7, 8, 9, 8, 1], [2, 5, 3, 4, 5, 6, 5, 5, 4, 5, 7], 
-            [4, 4, 2, 4, 1, 5, 1, 8, 9, 1, 1], [5, 5, 2, 1, 5, 1, 8, 4, 9, 8, 1], [3, 2, 3, 1, 2, 6, 7, 8, 9, 2, 7], 
-            [5, 4, 3, 7, 2, 1, 2, 8, 9, 1, 1], [5, 4, 3, 4, 5, 6, 7, 8, 9, 1, 1], [4, 4, 3, 8, 9, 8, 7, 8, 9, 7, 1]]
-    interval_erythrodermic=[[2, 10],[2, 10],[2, 10],[2, 10], [2, 10]]
-    interval_guttate=[[2, 10],[2, 10],[2, 10], [2, 10], [2, 10]]
-    interval_inverse=[[2, 10],[2, 10], [2, 10], [2, 10]]
-    interval_nail=[[2, 10], [2, 10],[2, 10],[2, 10],[2, 10], [2, 10],[2, 10],[2, 10], [2, 10], [2, 10], [2, 10]]
-    interval_pustular=[[2, 10],[2, 10],[2, 10],[2, 10], [2, 10],[2, 10],[2, 10],[2, 10], [2, 10], [2, 10]]
-    interval_plaque=[[2, 10],[2, 10],[2, 10],[2, 10], [2, 10],[2, 10], [2, 10], [2, 10]]
-    interval_arthritis=[[2, 10], [2, 10],[2, 10],[2, 10],[2, 10], [2, 10],[2, 10],[2, 10],[2, 10], [2, 10], [2, 10]]
+
+    interval_erythrodermic=[[2, 10],[2, 10],[2, 10],[2, 10], [2, 10],[2, 10],[2, 10],[2, 10],[2, 10], [2, 10],[2, 10],[2, 10],[2, 10],[2, 10], [2, 10]]
+
     if prediction_MultiClass==0:
-      st.warning('The input skin image invloves **erythrodermic psoriasis**. Please specify the degree of your symptoms to get the treatments.')
+      st.warning('The input skin image invloves **Erythrodermic Psoriasis**. Please specify the degree of your symptoms to get the treatments.')
+    if prediction_MultiClass==1:
+     st.warning('The input skin image invloves **Guttate Psoriasis**. Please specify the degree of your symptoms to get the treatments.')
+    if prediction_MultiClass==2:
+     st.warning('The input skin image invloves **Inverse Psoriasis**. Please specify the degree of your symptoms to get the treatments.')
+    if prediction_MultiClass==3:
+     st.warning('The input skin image invloves **Nail Psoriasis**. Please specify the degree of your symptoms to get the treatments.')
+    if prediction_MultiClass==4:
+     st.warning('The input skin image invloves **Plaque Psoriasis**. Please specify the degree of your symptoms to get the treatments.')
+    if prediction_MultiClass==5:
+     st.warning('The input skin image invloves **Psoriatic Arthritis**. Please specify the degree of your symptoms to get the treatments.')
+    if prediction_MultiClass==6:
+     st.warning('Please specify the degree of your symptoms on 0-9 scale to get the best treatment options. A higher amount indicates a higher severity level')
       params = []
-    #  cost = st.slider("How much can you spend?",0, 10, 1)
-    # params.append(cost)      
-      uveitis = st.slider("Redness and Pain of the Eye (Uveitis)",0, 4, 1)
-      params.append(uveitis)
-      vision= st.slider("Decline in Vision",0, 4, 1)
-      params.append(vision)
-      st.info('In this part, a survey is performed to claculate your Psoriasis Area and Severity Index (PASI) score.')
-      col1_head, col2_head = st.columns(2)
-          
-      with col2_head:
-        st.text(' ')
-        st.text(' ')
-        st.text(' ')
-        st.text(' ')
-        st.text(' ')
-        st.image("head.png", width=120) 
-        
-      with col1_head:
-        percent_head=st.slider("What percentage of your head is involved?",0, 100, 1)
-        if percent_head==0:
-          ph=0
-        elif percent_head>=1 and percent_head<=9:
-          ph=1
-        elif percent_head>=10 and percent_head<=29:
-          ph=2
-        elif percent_head>=30 and percent_head<=49:
-          ph=3
-        elif percent_head>=50 and percent_head<=69:
-          ph=4
-        elif percent_head>=70 and percent_head<=89:
-          ph=5
-        elif percent_head>=90 and percent_head<=100:
-          ph=6
-        erythema_head=st.slider("Erythema (Redness) of the head lesion",0, 4, 1)
-#        params.append(erythema_head)
-        induration_head=st.slider("Induration (Thickness) of the head lesion",0, 4, 1)
- #       params.append(induration_head)
-        desquamation_head=st.slider("Desquamation (Scaling) of the head lesion",0, 4, 1)
-  #      params.append(desquamation_head)
-      st.text(' ')  
-      st.text(' ')  
-      st.text(' ')  
-      col1_arms, col2_arms = st.columns(2)
-
-      with col2_arms:
-        st.text(' ')
-        st.text(' ')
-        st.text(' ')
-        st.text(' ')
-        st.text(' ')
-        st.image("arms.png", width=120) 
-
-      st.text(' ')  
-      st.text(' ')  
-      st.text(' ')  
-      with col1_arms:
-        percent_arms=st.slider("What percentage of your arms is involved?",0, 100, 1)
-        if percent_arms==0:
-          pa=0
-        elif percent_arms>=1 and percent_arms<=9:
-          pa=1
-        elif percent_arms>=10 and percent_arms<=29:
-          pa=2
-        elif percent_arms>=30 and percent_arms<=49:
-          pa=3
-        elif percent_arms>=50 and percent_arms<=69:
-          pa=4
-        elif percent_arms>=70 and percent_arms<=89:
-          pa=5
-        elif percent_arms>=90 and percent_arms<=100:
-          pa=6
-        erythema_arms=st.slider("Erythema (Redness) of the arms lesion",0, 4, 1)
- #       params.append(erythema_arms)
-        induration_arms=st.slider("Induration (Thickness) of the arms lesion",0, 4, 1)
-  #      params.append(induration_arms)
-        desquamation_arms=st.slider("Desquamation (Scaling) of the arms lesion",0, 4, 1)
-   #     params.append(desquamation_arms)
-        
-      col1_trunk, col2_trunk = st.columns(2)
-      with col2_trunk:
-        st.text(' ')
-        st.text(' ')
-        st.text(' ')
-        st.text(' ')
-        st.text(' ')
-        st.image("trunk.png", width=120) 
-      st.text(' ')  
-      st.text(' ')  
-      st.text(' ')        
-      with col1_trunk:
-        percent_trunk=st.slider("What percentage of your trunk is involved?",0, 100, 1)
-        if percent_trunk==0:
-          pt=0
-        elif percent_trunk>=1 and percent_trunk<=9:
-          pt=1
-        elif percent_trunk>=10 and percent_trunk<=29:
-          pt=2
-        elif percent_trunk>=30 and percent_trunk<=49:
-          pt=3
-        elif percent_trunk>=50 and percent_trunk<=69:
-          pt=4
-        elif percent_trunk>=70 and percent_trunk<=89:
-          pt=5
-        elif percent_trunk>=90 and percent_trunk<=100:
-          pt=6
-        erythema_trunk=st.slider("Erythema (Redness) of the trunk lesion",0, 4, 1)
-  #      params.append(erythema_trunk)
-        induration_trunk=st.slider("Induration (Thickness) of the trunk lesion",0, 4, 1)
-   #     params.append(induration_trunk)
-        desquamation_trunk=st.slider("Desquamation (Scaling) of the trunk lesion",0, 4, 1)
-    #    params.append(desquamation_trunk)
-               
-      col1_legs, col2_legs = st.columns(2)
-      with col2_legs:
-        st.text(' ')
-        st.text(' ')
-        st.text(' ')
-        st.text(' ')
-        st.text(' ')
-        st.image("legs.png", width=120) 
-
-      st.text(' ')  
-      st.text(' ')  
-      st.text(' ')  
-      with col1_legs:
-        percent_legs=st.slider("What percentage of your legs is involved?",0, 100, 1)
-        if percent_legs==0:
-          pl=0
-        elif percent_legs>=1 and percent_legs<=9:
-          pl=1
-        elif percent_legs>=10 and percent_legs<=29:
-          pl=2
-        elif percent_legs>=30 and percent_legs<=49:
-          pl=3
-        elif percent_legs>=50 and percent_legs<=69:
-          pl=4
-        elif percent_legs>=70 and percent_legs<=89:
-          pl=5
-        elif percent_legs>=90 and percent_legs<=100:
-          pl=6
-        erythema_legs=st.slider("Erythema (Redness) of the legs lesion",0, 4, 1)
-  #      params.append(erythema_legs)
-        induration_legs=st.slider("Induration (Thickness) of the legs lesion",0, 4, 1)
-   #     params.append(induration_legs)
-        desquamation_legs=st.slider("Desquamation (Scaling) of the legs lesion",0, 4, 1)
-    #    params.append(desquamation_legs)
-      st.text('')
-      erythema_avg=(erythema_head+erythema_arms+erythema_trunk+erythema_legs)/4
-      params.append(erythema_avg)
-      induration_avg=(induration_head+induration_arms+induration_trunk+induration_legs)/4
-      params.append(induration_avg)   
-      desquamation_avg=(desquamation_head+desquamation_arms+desquamation_trunk+desquamation_legs)/4
-      params.append(desquamation_avg)
+      erythema = st.slider("Erythema",0, 9, 1)
+      params.append(erythema)      
+      induration = st.slider("Induration",0, 9, 1)
+      params.append(induration)
+      desquamation= st.slider("Desquamation",0, 9, 1)
+      params.append(desquamation)
+      itching= st.slider("Itching",0, 9, 1)
+      params.append(itching)
+      dryness= st.slider("Dryness",0, 9, 1)
+      params.append(dryness) 
+      tenderness= st.slider("Tenderness",0, 9, 1)
+      params.append(tenderness)
+      uveitis= st.slider("Redness of the Eye (Uveitis)",0, 9, 1)
+      params.append(uveitis) 
+      decline= st.slider("Decline in Vision",0, 9, 1)
+      params.append(decline)
+      fever= st.slider("Fever",0, 9, 1)
+      params.append(fever) 
+      pain= st.slider("Pain",0, 9, 1)
+      params.append(pain) 
+      fatigue= st.slider("Fatigue",0, 9, 1)
+      params.append(fatigue) 
+      pitting= st.slider("Pitting",0, 9, 1)
+      params.append(pitting) 
+      crumbling= st.slider("Crumbling",0, 9, 1)
+      params.append(crumbling)
+      swelling= st.slider("Swelling",0, 9, 1)
+      params.append(swelling)
+      tiredness= st.slider("Tiredness",0, 9, 1)
+      params.append(tiredness) 
       
       params1=[element/sum(params) for element in params]
       omega=MCDM(params1, X_erythrodermic, interval_erythrodermic)
-      treatment={'0':'**Methotrexate acitretin**', '1':'**Cyclosporine**', '2':'**Infliximab**', '3':'**Mild- to moderate-potency topical corticosteroids in combination with systemic treatments**',
-                 '4':'**Guselkumab**', '5':'**Psoralen and Ultraviolet A (PUVA)**', '6':'**Psoralen and Combination of methotrexate and compound glycyrrhizin**'}
+      treatment={'0':'**Tacrolimus**', '1':'**Corticosteroids**', '2':'**Calcipotriol**', 
+                 '3':'**Calcitriol**', '4':'**Tacalcitol**', '5':'**Retinoids**', 
+                 '6':'**Excimer Laser Therapy**', '7':'**Infliximab**', '8':'**Adalimumab**', '9':'**Etanercept**',
+                 '10':'**Phototherapy**, '11':'**Ustekinumab**', '12':'**Ixekizumab**', '13':'**Secukinumab**',
+                 '14':'**Brodalumab**', '15':'**Guselkumab**', '16':'**Tonsillectomy**', '17':'**Vitamin D analogs**', '18':'**Tar**', '19':'**Cyclosprine**',
+                 '20':'**Methotrexate**', '21':'**Acitretin**', '22':'**Emollients**', '23':'**Antimicrobials/Antiseptics**',
+                 '24':'**Narrow-band Ultraviolet B **', '25':'**Psoralen and Ultraviolet A (PUVA)**', '26':'**Basiliximab**', 
+                 '27':'**Tocilizumab**','28':'**Risankizumab**', '29':'**Certolizumab**', '30':'**Golimumab**', '31':'**Apremilast**',
+                 '32':'**Tofacitinib**', '33':'**5-Fluorouracil**', '34':'**Ibuprofen**', '35':'**Naproxen**',
+                 '36':'**Diclofenac**', '37':'**Celecoxib**', '38':'**Etoricoxib**', '39':'**Leflunomide**',
+                '40':'**Sulfasalazine**'}
+      
       max_index1 = np.argmax(omega)
       omega[max_index1]=float('-inf')
       max_index2 = np.argmax(omega)
@@ -480,8 +354,7 @@ else:
       max_index4 = np.argmax(omega)
       omega[np.argmax(omega)]=float('-inf')
       max_index5 = np.argmax(omega)
-      PASI=0.1*(erythema_head+induration_head+desquamation_head)*ph+0.2*(erythema_arms+induration_arms+desquamation_arms)*pa+0.3*(erythema_trunk+induration_trunk+desquamation_trunk)*pt+0.4*(erythema_legs+induration_legs+desquamation_legs)*pl
-      if st.button('Get your PASI score and the best treatment options'):
-        st.info('Your PASI score is ' +str(PASI))
+      
+      if st.button('Get the best treatment options'):
         st.info('The best treatment options according to your conditions are ' + treatment[str(max_index1)] + ', ' + treatment[str(max_index2)] + ', ' + treatment[str(max_index3)]+
                ', ' + treatment[str(max_index4)] +' and '+treatment[str(max_index5)] + '.')
