@@ -276,14 +276,15 @@ else:
   prediction_binary=import_and_predict_binary(image, classifier1, classifier2, classifier3, weights_binary)
   prediction_MultiClass=import_and_predict_MultiClass(image, classifier4, classifier5, classifier6, weights_MultiClass)
   result=''
-  import pandas as pd
-  X = pd.read_excel('treatments.xlsx')
+
   if prediction_binary==0:
     st.info('**The input image is not psoriatic. The possible skin conditions include eczema, seborrheic dermatitis, keratosis pilaris, irritant or allergic contact dermatitis, pityriasis rosea, ringworms, hives, acne, and rosacea.**')
   if prediction_binary==1:
+    import pandas as pd
+    X = pd.read_excel('treatments.xlsx')
     treatment=''
 
-    interval_erythrodermic=[[2, 10],[2, 10],[2, 10],[2, 10], [2, 10],[2, 10],[2, 10],[2, 10],[2, 10], [2, 10],[2, 10],[2, 10],[2, 10],[2, 10], [2, 10]]
+    interval=[[2, 10],[2, 10],[2, 10],[2, 10], [2, 10],[2, 10],[2, 10],[2, 10],[2, 10], [2, 10],[2, 10],[2, 10],[2, 10],[2, 10], [2, 10]]
 
     if prediction_MultiClass==0:
       st.warning('The input skin image invloves **Erythrodermic Psoriasis**. Please specify the degree of your symptoms to get the treatments.')
@@ -298,63 +299,64 @@ else:
     if prediction_MultiClass==5:
      st.warning('The input skin image invloves **Psoriatic Arthritis**. Please specify the degree of your symptoms to get the treatments.')
     if prediction_MultiClass==6:
-     st.warning('Please specify the degree of your symptoms on 0-9 scale to get the best treatment options. A higher amount indicates a higher severity level')
-      params = []
-      erythema = st.slider("Erythema",0, 9, 1)
-      params.append(erythema)      
-      induration = st.slider("Induration",0, 9, 1)
-      params.append(induration)
-      desquamation= st.slider("Desquamation",0, 9, 1)
-      params.append(desquamation)
-      itching= st.slider("Itching",0, 9, 1)
-      params.append(itching)
-      dryness= st.slider("Dryness",0, 9, 1)
-      params.append(dryness) 
-      tenderness= st.slider("Tenderness",0, 9, 1)
-      params.append(tenderness)
-      uveitis= st.slider("Redness of the Eye (Uveitis)",0, 9, 1)
-      params.append(uveitis) 
-      decline= st.slider("Decline in Vision",0, 9, 1)
-      params.append(decline)
-      fever= st.slider("Fever",0, 9, 1)
-      params.append(fever) 
-      pain= st.slider("Pain",0, 9, 1)
-      params.append(pain) 
-      fatigue= st.slider("Fatigue",0, 9, 1)
-      params.append(fatigue) 
-      pitting= st.slider("Pitting",0, 9, 1)
-      params.append(pitting) 
-      crumbling= st.slider("Crumbling",0, 9, 1)
-      params.append(crumbling)
-      swelling= st.slider("Swelling",0, 9, 1)
-      params.append(swelling)
-      tiredness= st.slider("Tiredness",0, 9, 1)
-      params.append(tiredness) 
+    
+    st.warning('Please specify the degree of your symptoms on 0-9 scale to get the best treatment options. A higher amount indicates a higher severity level')
+    params = []
+    erythema = st.slider("Erythema",0, 9, 1)
+    params.append(erythema)      
+    induration = st.slider("Induration",0, 9, 1)
+    params.append(induration)
+    desquamation= st.slider("Desquamation",0, 9, 1)
+    params.append(desquamation)
+    itching= st.slider("Itching",0, 9, 1)
+    params.append(itching)
+    dryness= st.slider("Dryness",0, 9, 1)
+    params.append(dryness) 
+    tenderness= st.slider("Tenderness",0, 9, 1)
+    params.append(tenderness)
+    uveitis= st.slider("Redness of the Eye (Uveitis)",0, 9, 1)
+    params.append(uveitis) 
+    decline= st.slider("Decline in Vision",0, 9, 1)
+    params.append(decline)
+    fever= st.slider("Fever",0, 9, 1)
+    params.append(fever) 
+    pain= st.slider("Pain",0, 9, 1)
+    params.append(pain) 
+    fatigue= st.slider("Fatigue",0, 9, 1)
+    params.append(fatigue) 
+    pitting= st.slider("Pitting",0, 9, 1)
+    params.append(pitting) 
+    crumbling= st.slider("Crumbling",0, 9, 1)
+    params.append(crumbling)
+    swelling= st.slider("Swelling",0, 9, 1)
+    params.append(swelling)
+    tiredness= st.slider("Tiredness",0, 9, 1)
+    params.append(tiredness) 
       
-      params1=[element/sum(params) for element in params]
-      omega=MCDM(params1, X_erythrodermic, interval_erythrodermic)
-      treatment={'0':'**Tacrolimus**', '1':'**Corticosteroids**', '2':'**Calcipotriol**', 
-                 '3':'**Calcitriol**', '4':'**Tacalcitol**', '5':'**Retinoids**', 
-                 '6':'**Excimer Laser Therapy**', '7':'**Infliximab**', '8':'**Adalimumab**', '9':'**Etanercept**',
-                 '10':'**Phototherapy**, '11':'**Ustekinumab**', '12':'**Ixekizumab**', '13':'**Secukinumab**',
-                 '14':'**Brodalumab**', '15':'**Guselkumab**', '16':'**Tonsillectomy**', '17':'**Vitamin D analogs**', '18':'**Tar**', '19':'**Cyclosprine**',
-                 '20':'**Methotrexate**', '21':'**Acitretin**', '22':'**Emollients**', '23':'**Antimicrobials/Antiseptics**',
-                 '24':'**Narrow-band Ultraviolet B **', '25':'**Psoralen and Ultraviolet A (PUVA)**', '26':'**Basiliximab**', 
-                 '27':'**Tocilizumab**','28':'**Risankizumab**', '29':'**Certolizumab**', '30':'**Golimumab**', '31':'**Apremilast**',
-                 '32':'**Tofacitinib**', '33':'**5-Fluorouracil**', '34':'**Ibuprofen**', '35':'**Naproxen**',
-                 '36':'**Diclofenac**', '37':'**Celecoxib**', '38':'**Etoricoxib**', '39':'**Leflunomide**',
-                '40':'**Sulfasalazine**'}
+    params1=[element/sum(params) for element in params]
+    omega=MCDM(params1, X, interval)
+    treatment={'0':'**Tacrolimus**', '1':'**Corticosteroids**', '2':'**Calcipotriol**', 
+               '3':'**Calcitriol**', '4':'**Tacalcitol**', '5':'**Retinoids**', 
+               '6':'**Excimer Laser Therapy**', '7':'**Infliximab**', '8':'**Adalimumab**', '9':'**Etanercept**',
+               '10':'**Phototherapy**, '11':'**Ustekinumab**', '12':'**Ixekizumab**', '13':'**Secukinumab**',
+               '14':'**Brodalumab**', '15':'**Guselkumab**', '16':'**Tonsillectomy**', '17':'**Vitamin D analogs**', '18':'**Tar**', '19':'**Cyclosprine**',
+               '20':'**Methotrexate**', '21':'**Acitretin**', '22':'**Emollients**', '23':'**Antimicrobials/Antiseptics**',
+               '24':'**Narrow-band Ultraviolet B **', '25':'**Psoralen and Ultraviolet A (PUVA)**', '26':'**Basiliximab**', 
+               '27':'**Tocilizumab**','28':'**Risankizumab**', '29':'**Certolizumab**', '30':'**Golimumab**', '31':'**Apremilast**',
+               '32':'**Tofacitinib**', '33':'**5-Fluorouracil**', '34':'**Ibuprofen**', '35':'**Naproxen**',
+               '36':'**Diclofenac**', '37':'**Celecoxib**', '38':'**Etoricoxib**', '39':'**Leflunomide**',
+               '40':'**Sulfasalazine**'}
       
-      max_index1 = np.argmax(omega)
-      omega[max_index1]=float('-inf')
-      max_index2 = np.argmax(omega)
-      omega[np.argmax(omega)]=float('-inf')
-      max_index3 = np.argmax(omega)
-      omega[np.argmax(omega)]=float('-inf')
-      max_index4 = np.argmax(omega)
-      omega[np.argmax(omega)]=float('-inf')
-      max_index5 = np.argmax(omega)
+    max_index1 = np.argmax(omega)
+    omega[max_index1]=float('-inf')
+    max_index2 = np.argmax(omega)
+    omega[np.argmax(omega)]=float('-inf')
+    max_index3 = np.argmax(omega)
+    omega[np.argmax(omega)]=float('-inf')
+    max_index4 = np.argmax(omega)
+    omega[np.argmax(omega)]=float('-inf')
+    max_index5 = np.argmax(omega)
       
-      if st.button('Get the best treatment options'):
-        st.info('The best treatment options according to your conditions are ' + treatment[str(max_index1)] + ', ' + treatment[str(max_index2)] + ', ' + treatment[str(max_index3)]+
-               ', ' + treatment[str(max_index4)] +' and '+treatment[str(max_index5)] + '.')
+    if st.button('Get the best treatment options'):
+      st.info('The best treatment options according to your conditions are ' + treatment[str(max_index1)] + ', ' + treatment[str(max_index2)] + ', ' + treatment[str(max_index3)]+
+             ', ' + treatment[str(max_index4)] +' and '+treatment[str(max_index5)] + '.')
