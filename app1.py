@@ -338,7 +338,7 @@ else:
     treatment={'0':'**Tacrolimus**', '1':'**Corticosteroids**', '2':'**Calcipotriol**', 
                '3':'**Calcitriol**', '4':'**Tacalcitol**', '5':'**Retinoids**', 
                '6':'**Excimer Laser Therapy**', '7':'**Infliximab**', '8':'**Adalimumab**', '9':'**Etanercept**',
-               '10':'**Phototherapy**, '11':'**Ustekinumab**', '12':'**Ixekizumab**', '13':'**Secukinumab**',
+               '10':'**Phototherapy**', '11':'**Ustekinumab**', '12':'**Ixekizumab**', '13':'**Secukinumab**',
                '14':'**Brodalumab**', '15':'**Guselkumab**', '16':'**Tonsillectomy**', '17':'**Vitamin D analogs**', '18':'**Tar**', '19':'**Cyclosprine**',
                '20':'**Methotrexate**', '21':'**Acitretin**', '22':'**Emollients**', '23':'**Antimicrobials/Antiseptics**',
                '24':'**Narrow-band Ultraviolet B **', '25':'**Psoralen and Ultraviolet A (PUVA)**', '26':'**Basiliximab**', 
