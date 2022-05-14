@@ -299,7 +299,7 @@ else:
     if prediction_MultiClass==5:
      st.warning('The input skin image invloves **Psoriatic Arthritis**. Please specify the degree of your symptoms to get the treatments.')
     if prediction_MultiClass==6:
-    
+     st.warning('The input skin image invloves **Pustular Psoriasis**. Please specify the degree of your symptoms to get the treatments.')
     st.warning('Please specify the degree of your symptoms on 0-9 scale to get the best treatment options. A higher amount indicates a higher severity level')
     params = []
     erythema = st.slider("Erythema",0, 9, 1)
