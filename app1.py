@@ -259,8 +259,9 @@ with st.spinner("The model is being loaded..."):
   K.set_session(session)
 
 with st.sidebar:
+  st.info('For technical details, please refer to: ... .doi: 10.1515/cclm-2020-1294.')
   st.header('Disclaimer:')
-  st.info('ABCD')
+  st.warning('ABCD')
   
 # The Title and User Guide
 st.markdown("<h1 style='text-align: center; color: black;'>A Clinical Decision Support for Psoriasis</h1>", unsafe_allow_html=True)
