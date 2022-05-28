@@ -258,6 +258,9 @@ with st.spinner("The model is being loaded..."):
   classifier1, classifier2, classifier3, classifier4, classifier5, classifier6, weights_binary, weights_MultiClass, session = load_classifiers()
   K.set_session(session)
 
+with st.sidebar:
+  st.info('ABCD')
+  
 # The Title and User Guide
 st.markdown("<h1 style='text-align: center; color: black;'>A Clinical Decision Support for Psoriasis</h1>", unsafe_allow_html=True)
 st.markdown('<style>body{background-color: black;}</style>',unsafe_allow_html=True)
