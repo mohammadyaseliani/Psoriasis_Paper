@@ -259,7 +259,7 @@ with st.spinner("The model is being loaded..."):
   K.set_session(session)
 
 with st.sidebar:
-  St.header('Disclaimer:')
+  st.header('Disclaimer:')
   st.info('ABCD')
   
 # The Title and User Guide
