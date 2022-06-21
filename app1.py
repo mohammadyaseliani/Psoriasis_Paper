@@ -259,9 +259,9 @@ with st.spinner("The model is being loaded..."):
   K.set_session(session)
 
 with st.sidebar:
-  st.info('For technical details, please refer to: ... .doi: 10.1515/cclm-2020-1294.')
+  st.info('For technical details, please refer to: ... .doi: ...')
   st.header('Disclaimer:')
-  st.warning('ABCD')
+  st.warning('This app works as a decision support tool for clinicians. Although this program has been tested thoroughly, the accuracy of the information cannot be guaranteed and the authors shall not be liable for any claim, damages or other liability.')
   
 # The Title and User Guide
 st.markdown("<h1 style='text-align: center; color: black;'>A Clinical Decision Support for Psoriasis</h1>", unsafe_allow_html=True)
