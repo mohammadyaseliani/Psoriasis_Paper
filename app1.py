@@ -342,16 +342,16 @@ else:
     params1=[element/sum(params) for element in params]
     omega=MCDM(params1, X, interval)
     treatment={'0':'**Tacrolimus**', '1':'**Corticosteroids**', '2':'**Calcipotriol**', 
-               '3':'**Calcitriol**', '4':'**Tacalcitol**', '5':'**Retinoids**', 
-               '6':'**Excimer Laser Therapy**', '7':'**Infliximab**', '8':'**Adalimumab**', '9':'**Etanercept**',
-               '10':'**Phototherapy**', '11':'**Ustekinumab**', '12':'**Ixekizumab**', '13':'**Secukinumab**',
-               '14':'**Brodalumab**', '15':'**Guselkumab**', '16':'**Tonsillectomy**', '17':'**Vitamin D analogs**', '18':'**Tar**', '19':'**Cyclosprine**',
-               '20':'**Methotrexate**', '21':'**Acitretin**', '22':'**Emollients**', '23':'**Antimicrobials/Antiseptics**',
-               '24':'**Narrow-band Ultraviolet B **', '25':'**Psoralen and Ultraviolet A (PUVA)**', '26':'**Basiliximab**', 
-               '27':'**Tocilizumab**','28':'**Risankizumab**', '29':'**Certolizumab**', '30':'**Golimumab**', '31':'**Apremilast**',
-               '32':'**Tofacitinib**', '33':'**5-Fluorouracil**', '34':'**Ibuprofen**', '35':'**Naproxen**',
-               '36':'**Diclofenac**', '37':'**Celecoxib**', '38':'**Etoricoxib**', '39':'**Leflunomide**',
-               '40':'**Sulfasalazine**'}
+               '3':'**Retinoids**', 
+               '4':'**Excimer Laser Therapy**', '5':'**Infliximab**', '6':'**Adalimumab**', '7':'**Etanercept**',
+               '8':'**Phototherapy**', '9':'**Ustekinumab**', '10':'**Ixekizumab**', '11':'**Secukinumab**',
+               '12':'**Brodalumab**', '13':'**Guselkumab**', '14':'**Tonsillectomy**', '15':'**Vitamin D analogs**', '16':'**Tar**', '17':'**Cyclosprine**',
+               '18':'**Methotrexate**', '19':'**Acitretin**', '20':'**Emollients**',
+               '21':'**Narrow-band Ultraviolet B **', '22':'**Psoralen and Ultraviolet A (PUVA)**', '23':'**Basiliximab**', 
+               '24':'**Tocilizumab**','25':'**Risankizumab**', '26':'**Certolizumab**', '27':'**Golimumab**', '28':'**Apremilast**',
+               '29':'**Tofacitinib**', '30':'**5-Fluorouracil**', '31':'**Ibuprofen**', '32':'**Naproxen**',
+               '33':'**Diclofenac**', '34':'**Celecoxib**', '35':'**Etoricoxib**', '36':'**Leflunomide**',
+               '37':'**Sulfasalazine**'}
       
     max_index1 = np.argmax(omega)
     omega[max_index1]=float('-inf')
