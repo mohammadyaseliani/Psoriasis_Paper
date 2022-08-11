@@ -328,8 +328,6 @@ else:
     params.append(fever) 
     pain= st.slider("Pain",0, 9, 1)
     params.append(pain) 
-    fatigue= st.slider("Fatigue",0, 9, 1)
-    params.append(fatigue) 
     pitting= st.slider("Pitting",0, 9, 1)
     params.append(pitting) 
     crumbling= st.slider("Crumbling",0, 9, 1)
@@ -338,7 +336,8 @@ else:
     params.append(swelling)
     tiredness= st.slider("Tiredness",0, 9, 1)
     params.append(tiredness) 
-      
+    params.append(5)
+    params.append(5)
     params1=[element/sum(params) for element in params]
     omega=MCDM(params1, X, interval)
     treatment={'0':'**Tacrolimus**', '1':'**Corticosteroids**', '2':'**Calcipotriol**', 
