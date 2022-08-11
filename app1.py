@@ -161,14 +161,14 @@ def MCDM(w, X, interval):
           f[i][j]=1
 
         elif X[i][j]>=x_min[j] and X[i][j]<=interval[j][0]:
-          f[i][j]=1-(interval[j][0]-X[i][j])/((max(interval[j][0]-x_min[j],x_max[j]-interval[j][1]))+1)
+          f[i][j]=1-(interval[j][0]-X[i][j])/((max(interval[j][0]-x_min[j],x_max[j]-interval[j][1])))
     
         elif X[i][j]>=interval[j][1] and X[i][j]<=x_max[j]:
-          f[i][j]=1-(1-interval[j][1]+X[i][j])/((max(interval[j][0]-x_min[j],x_max[j]-interval[j][1]))+1)
+          f[i][j]=1-(1-interval[j][1]+X[i][j])/((max(interval[j][0]-x_min[j],x_max[j]-interval[j][1])))
     
       if j==0:   #cost criterion
         if X[i][j]>=interval[j][0] and X[i][j]<=interval[j][1]:
-          f[i][j]=1/((max(interval[j][0]-x_min[j],x_max[j]-interval[j][1]))+1)
+          f[i][j]=1/((max(interval[j][0]-x_min[j],x_max[j]-interval[j][1])))
 
         elif X[i][j]>=x_min[j] and X[i][j]<=interval[j][0]:
           f[i][j]=(interval[j][0]-X[i][j])/(max(interval[j][0]-x_min[j],x_max[j]-interval[j][1]))
