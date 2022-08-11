@@ -308,6 +308,7 @@ else:
      st.warning('The input skin image invloves **Pustular Psoriasis**. Please specify the degree of your symptoms to get the treatments.')
     st.warning('Please specify the degree of your symptoms on 0-9 scale to get the best treatment options. A higher amount indicates a higher severity level')
     params = []
+    params.append(5)
     erythema = st.slider("Erythema",0, 9, 1)
     params.append(erythema)      
     induration = st.slider("Induration",0, 9, 1)
@@ -336,7 +337,6 @@ else:
     params.append(swelling)
     tiredness= st.slider("Tiredness",0, 9, 1)
     params.append(tiredness) 
-    params.append(5)
     params.append(5)
     params1=[element/sum(params) for element in params]
     omega=MCDM(params1, X, interval)
