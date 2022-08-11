@@ -286,7 +286,7 @@ else:
     st.info('**The input image is not psoriatic. The possible skin conditions include eczema, seborrheic dermatitis, keratosis pilaris, irritant or allergic contact dermatitis, pityriasis rosea, ringworms, hives, acne, and rosacea.**')
   if prediction_binary==1:
     import pandas as pd
-    X = pd.read_excel('treatments.xlsx')
+    X = pd.read_excel('Matrix1.xlsx')
     X=np.array(X, dtype=np.float64)
     treatment=''
 
