@@ -290,7 +290,7 @@ else:
     X=np.array(X, dtype=np.float64)
     treatment=''
 
-    interval=[[0, 10],[0, 10],[0, 10],[0, 10], [0, 10],[0, 10],[0, 10],[0, 10],[0, 10], [0, 10],[0, 10],[0, 10],[0, 10],[0, 10], [0, 10], [0,10]]
+    interval=[[1, 9],[1, 9],[1, 9],[1, 9], [1, 9],[1, 9],[1, 9],[1, 9],[1, 9], [1, 9],[1, 9],[1, 9],[1, 9],[1, 9], [1, 9], [1,9]]
 
     if prediction_MultiClass==0:
       st.warning('The input skin image invloves **Erythrodermic Psoriasis**. Please specify the degree of your symptoms to get the treatments.')
