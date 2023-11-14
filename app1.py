@@ -74,8 +74,9 @@ st.set_option('deprecation.showfileUploaderEncoding', False)
 def import_and_predict_binary(image_data, classifier1, classifier2, classifier3, weights_binary):
 
         # Preparing the Image
-        size = (224,224)    
-        image = ImageOps.fit(image_data, size, Image.ANTIALIAS)
+        size = (224,224)   
+        image = image_data.resize(size, Image.Resampling.LANCZOS)
+  #      image = ImageOps.fit(image_data, size, Image.ANTIALIAS)
         image = np.asarray(image)
         img = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         img=img/255.      
@@ -95,7 +96,8 @@ def import_and_predict_MultiClass(image_data, classifier4, classifier5, classifi
 
         # Preparing the Image
         size = (224,224)    
-        image = ImageOps.fit(image_data, size, Image.ANTIALIAS)
+        image = image_data.resize(size, Image.Resampling.LANCZOS)
+  #      image = ImageOps.fit(image_data, size, Image.ANTIALIAS)
         image = np.asarray(image)
         img = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         img=img/255.      
