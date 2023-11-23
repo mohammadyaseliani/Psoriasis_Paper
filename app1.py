@@ -263,7 +263,7 @@ with st.spinner("The model is being loaded..."):
 
 with st.sidebar:
 #  st.info('For technical details, please refer to: ... .doi: ...')
-  st.info('For technical details, please refer to: [10.1016/j.cie.2023.109754] (https://doi.org/10.1016/j.cie.2023.109754)')
+  st.info('For technical details, please refer to: https://doi.org/10.1016/j.cie.2023.109754')
   st.header('Disclaimer:')
   st.warning('This app works as a decision support tool for clinicians. Although this program has been tested thoroughly, the accuracy of the information cannot be guaranteed and the authors shall not be liable for any claim, damages or other liability.')
   
