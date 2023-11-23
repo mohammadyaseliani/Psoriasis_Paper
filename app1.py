@@ -11,7 +11,8 @@ from streamlit_option_menu import option_menu
 
 st.set_page_config(layout="centered")
 
-@st.cache(allow_output_mutation=True)
+#@st.cache(allow_output_mutation=True)
+st.cache_data(allow_output_mutation=True)
 # The Function of Loading the Hybrid CNN Model for Feature Extraction
 def load_classifiers():
   url1 = 'https://drive.google.com/u/0/uc?id=19yQXM-v_Q0h9sQGdqmGgiDjkqXAj7pQG&export=download'
@@ -261,7 +262,8 @@ with st.spinner("The model is being loaded..."):
   K.set_session(session)
 
 with st.sidebar:
-  st.info('For technical details, please refer to: ... .doi: ...')
+#  st.info('For technical details, please refer to: ... .doi: ...')
+  st.info('For technical details, please refer to: [10.1016/j.cie.2023.109754] (https://doi.org/10.1016/j.cie.2023.109754)')
   st.header('Disclaimer:')
   st.warning('This app works as a decision support tool for clinicians. Although this program has been tested thoroughly, the accuracy of the information cannot be guaranteed and the authors shall not be liable for any claim, damages or other liability.')
   
