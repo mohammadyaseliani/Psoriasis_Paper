@@ -69,7 +69,7 @@ def load_classifiers():
 import cv2
 from PIL import Image, ImageOps
 import numpy as np
-st.set_option('deprecation.showfileUploaderEncoding', False)
+# st.set_option('deprecation.showfileUploaderEncoding', False)
 
 # The Function of Importing the Image and Predicting Its Corresponding Class 
 def import_and_predict_binary(image_data, classifier1, classifier2, classifier3, weights_binary):
