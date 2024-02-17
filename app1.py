@@ -14,55 +14,77 @@ st.set_page_config(layout="centered")
 @st.cache(allow_output_mutation=True)
 #@st.cache_data(allow_output_mutation=True)
 # The Function of Loading the Hybrid CNN Model for Feature Extraction
+
 def load_classifiers():
-  url1 = 'https://drive.google.com/u/0/uc?id=19yQXM-v_Q0h9sQGdqmGgiDjkqXAj7pQG&export=download'
-  r1 = requests.get(url1, allow_redirects=True)
-  url2 = 'https://drive.google.com/u/0/uc?id=1-2oglfOHsJ8BsJ98q5b8xLBiytGM0ez3&export=download'
-  r2 = requests.get(url2, allow_redirects=True)
-  url3 = 'https://drive.google.com/u/0/uc?id=1-5r031ZBkGVitnuV4Xu8z0Hx2ZMwqWYT&export=download&confirm=t'
-  r3 = requests.get(url3, allow_redirects=True)
-  url4 = 'https://drive.google.com/u/0/uc?id=1-3SVUDHrKmV-dUz1uppdLrIoV_favOZt&export=download&confirm=t'
-  r4 = requests.get(url4, allow_redirects=True)
-  url5 = 'https://drive.google.com/u/0/uc?id=1-64EcLv277pWm4pfrlAeXLkygT2JIvKj&export=download&confirm=t'
-  r5 = requests.get(url5, allow_redirects=True)
-  url6 = 'https://drive.google.com/u/0/uc?id=1-4E8kBAFuoToexf_Nh1-i3MxQeQ7wC4D&export=download&confirm=t'
-  r6 = requests.get(url6, allow_redirects=True)
-  url7 = 'https://drive.google.com/u/0/uc?id=1C2X4worq9sGrBlURKLzqucDtDYQCvBA-&export=download'
-  r7 = requests.get(url7, allow_redirects=True)
-  url8 = 'https://drive.google.com/u/0/uc?id=1-5zYystBU_xRA4iihAcRUqsU3EC5QUnm&export=download'
-  r8 = requests.get(url8, allow_redirects=True)
-  with open('ResNet50V2_Binary.hdf5', 'wb') as f:
-    f.write(r1.content)
-  with open('ResNet50V2_MultiClass.hdf5', 'wb') as f:
-    f.write(r2.content)
-  with open('ResNet101V2_Binary.hdf5', 'wb') as f:
-    f.write(r3.content)
-  with open('ResNet101V2_MultiClass.hdf5', 'wb') as f:
-    f.write(r4.content)
-  with open('ResNet152V2_Binary.hdf5', 'wb') as f:
-    f.write(r5.content)
-  with open('ResNet152V2_MultiClass.hdf5', 'wb') as f:
-    f.write(r6.content)
-  with open('weights_binary.npy', 'wb') as f:
-    f.write(r7.content)
-  with open('weights_MultiClass.npy', 'wb') as f:
-    f.write(r8.content)
-  network1=tf.keras.models.load_model('ResNet50V2_Binary.hdf5')
-  network1.make_predict_function()
-  network2=tf.keras.models.load_model('ResNet101V2_Binary.hdf5')
-  network2.make_predict_function()
-  network3=tf.keras.models.load_model('ResNet152V2_Binary.hdf5')
-  network3.make_predict_function()
-  network4=tf.keras.models.load_model('ResNet50V2_MultiClass.hdf5')
-  network4.make_predict_function()
-  network5=tf.keras.models.load_model('ResNet101V2_MultiClass.hdf5')
-  network5.make_predict_function()
-  network6=tf.keras.models.load_model('ResNet152V2_MultiClass.hdf5')
-  network6.make_predict_function()
-  weights_binary=np.load('weights_binary.npy')
-  weights_MultiClass=np.load('weights_MultiClass.npy')
-  session = K.get_session()
-  return network1, network2, network3, network4, network5, network6, weights_binary, weights_MultiClass, session
+    network1=tf.keras.models.load_model('ResNet50V2_Binary.hdf5')
+    network1.make_predict_function()
+    network2=tf.keras.models.load_model('ResNet101V2_Binary.hdf5')
+    network2.make_predict_function()
+    network3=tf.keras.models.load_model('ResNet152V2_Binary.hdf5')
+    network3.make_predict_function()
+    network4=tf.keras.models.load_model('ResNet50V2_MultiClass.hdf5')
+    network4.make_predict_function()
+    network5=tf.keras.models.load_model('ResNet101V2_MultiClass.hdf5')
+    network5.make_predict_function()
+    network6=tf.keras.models.load_model('ResNet152V2_MultiClass.hdf5')
+    network6.make_predict_function()
+
+    weights_binary = np.load('weights_binary.npy')
+    weights_MultiClass = np.load('weights_MultiClass.npy')
+
+    session = K.get_session()
+
+    return network1, network2, network3, network4, network5, network6, weights_binary, weights_MultiClass, session
+
+#def load_classifiers():
+ # url1 = 'https://drive.google.com/u/0/uc?id=19yQXM-v_Q0h9sQGdqmGgiDjkqXAj7pQG&export=download'
+  #r1 = requests.get(url1, allow_redirects=True)
+  #url2 = 'https://drive.google.com/u/0/uc?id=1-2oglfOHsJ8BsJ98q5b8xLBiytGM0ez3&export=download'
+  #r2 = requests.get(url2, allow_redirects=True)
+ # url3 = 'https://drive.google.com/u/0/uc?id=1-5r031ZBkGVitnuV4Xu8z0Hx2ZMwqWYT&export=download&confirm=t'
+ # r3 = requests.get(url3, allow_redirects=True)
+ # url4 = 'https://drive.google.com/u/0/uc?id=1-3SVUDHrKmV-dUz1uppdLrIoV_favOZt&export=download&confirm=t'
+ # r4 = requests.get(url4, allow_redirects=True)
+  #url5 = 'https://drive.google.com/u/0/uc?id=1-64EcLv277pWm4pfrlAeXLkygT2JIvKj&export=download&confirm=t'
+ # r5 = requests.get(url5, allow_redirects=True)
+ # url6 = 'https://drive.google.com/u/0/uc?id=1-4E8kBAFuoToexf_Nh1-i3MxQeQ7wC4D&export=download&confirm=t'
+ # r6 = requests.get(url6, allow_redirects=True)
+ # url7 = 'https://drive.google.com/u/0/uc?id=1C2X4worq9sGrBlURKLzqucDtDYQCvBA-&export=download'
+ # r7 = requests.get(url7, allow_redirects=True)
+ # url8 = 'https://drive.google.com/u/0/uc?id=1-5zYystBU_xRA4iihAcRUqsU3EC5QUnm&export=download'
+ # r8 = requests.get(url8, allow_redirects=True)
+ # with open('ResNet50V2_Binary.hdf5', 'wb') as f:
+ #   f.write(r1.content)
+ # with open('ResNet50V2_MultiClass.hdf5', 'wb') as f:
+  #  f.write(r2.content)
+#  with open('ResNet101V2_Binary.hdf5', 'wb') as f:
+ #   f.write(r3.content)
+ # with open('ResNet101V2_MultiClass.hdf5', 'wb') as f:
+ #   f.write(r4.content)
+ # with open('ResNet152V2_Binary.hdf5', 'wb') as f:
+ #   f.write(r5.content)
+ # with open('ResNet152V2_MultiClass.hdf5', 'wb') as f:
+  #  f.write(r6.content)
+ # with open('weights_binary.npy', 'wb') as f:
+  #  f.write(r7.content)
+ # with open('weights_MultiClass.npy', 'wb') as f:
+ #   f.write(r8.content)
+ # network1=tf.keras.models.load_model('ResNet50V2_Binary.hdf5')
+ # network1.make_predict_function()
+ # network2=tf.keras.models.load_model('ResNet101V2_Binary.hdf5')
+ # network2.make_predict_function()
+ # network3=tf.keras.models.load_model('ResNet152V2_Binary.hdf5')
+ # network3.make_predict_function()
+ # network4=tf.keras.models.load_model('ResNet50V2_MultiClass.hdf5')
+  #network4.make_predict_function()
+  #network5=tf.keras.models.load_model('ResNet101V2_MultiClass.hdf5')
+ # network5.make_predict_function()
+ # network6=tf.keras.models.load_model('ResNet152V2_MultiClass.hdf5')
+ # network6.make_predict_function()
+ # weights_binary=np.load('weights_binary.npy')
+ # weights_MultiClass=np.load('weights_MultiClass.npy')
+ # session = K.get_session()
+ # return network1, network2, network3, network4, network5, network6, weights_binary, weights_MultiClass, session
 
 
 # Importing the Necessary Libraries for Loading the Input Image and Making Predicitons
