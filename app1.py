@@ -390,4 +390,4 @@ else:
       
     if st.button('Get the best treatment options'):
       st.info('The best treatment options according to these conditions are ' + treatment[str(max_index1)] + ', ' + treatment[str(max_index2)] + ', ' + treatment[str(max_index3)]+
-             ', ' + treatment[str(max_index4)] +' and '+treatment[str(max_index5)] + '.')
+             ', ' + treatment[str(max_index4)] +', and '+treatment[str(max_index5)] + '.')
