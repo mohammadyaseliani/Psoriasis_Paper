@@ -319,20 +319,20 @@ else:
     interval=[[0, 10],[0, 10],[0, 10],[0, 10], [0, 10],[0, 10],[0, 10],[0, 10],[0, 10], [0, 10],[0, 10],[0, 10],[0, 10],[0, 10], [0, 10], [0,10]]
 
     if prediction_MultiClass==0:
-      st.warning('The input skin image invloves **Erythrodermic Psoriasis**. Please specify the degree of your symptoms to get the treatments.')
+      st.warning('The input skin image invloves **Erythrodermic Psoriasis**. Please specify the degree of symptoms to get the treatments.')
     if prediction_MultiClass==1:
-     st.warning('The input skin image invloves **Guttate Psoriasis**. Please specify the degree of your symptoms to get the treatments.')
+     st.warning('The input skin image invloves **Guttate Psoriasis**. Please specify the degree of symptoms to get the treatments.')
     if prediction_MultiClass==2:
-     st.warning('The input skin image invloves **Inverse Psoriasis**. Please specify the degree of your symptoms to get the treatments.')
+     st.warning('The input skin image invloves **Inverse Psoriasis**. Please specify the degree of symptoms to get the treatments.')
     if prediction_MultiClass==3:
-     st.warning('The input skin image invloves **Nail Psoriasis**. Please specify the degree of your symptoms to get the treatments.')
+     st.warning('The input skin image invloves **Nail Psoriasis**. Please specify the degree of symptoms to get the treatments.')
     if prediction_MultiClass==4:
-     st.warning('The input skin image invloves **Plaque Psoriasis**. Please specify the degree of your symptoms to get the treatments.')
+     st.warning('The input skin image invloves **Plaque Psoriasis**. Please specify the degree of symptoms to get the treatments.')
     if prediction_MultiClass==5:
-     st.warning('The input skin image invloves **Psoriatic Arthritis**. Please specify the degree of your symptoms to get the treatments.')
+     st.warning('The input skin image invloves **Psoriatic Arthritis**. Please specify the degree of symptoms to get the treatments.')
     if prediction_MultiClass==6:
-     st.warning('The input skin image invloves **Pustular Psoriasis**. Please specify the degree of your symptoms to get the treatments.')
-    st.warning('Please specify the degree of your symptoms on 0-9 scale to get the best treatment options. A higher amount indicates a higher severity level')
+     st.warning('The input skin image involves **Pustular Psoriasis**. Please specify the degree of symptoms to get the treatments.')
+    st.warning('Please specify the degree of symptoms on a 0-9 scale to get the best treatment options. A higher amount indicates a higher severity level')
     params = []
     params.append(5)
     erythema = st.slider("Erythema",0, 9, 1)
