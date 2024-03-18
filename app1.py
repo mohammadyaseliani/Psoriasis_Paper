@@ -5,7 +5,8 @@ import tensorflow as tf
 import pickle
 import numpy as np
 import requests
-import tensorflow.compat.v1.keras.backend as K
+#import tensorflow.compat.v1.keras.backend as K
+import tensorflow.keras.backend as K
 import pandas as pd
 from streamlit_option_menu import option_menu
 
