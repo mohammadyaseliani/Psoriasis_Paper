@@ -303,7 +303,8 @@ if st.session_state.files is None:
   st.text("Please upload an image file")
 else:
   image = Image.open(st.session_state.files)
-  st.image(image, use_column_width=True)
+  #st.image(image, use_column_width=True)
+  st.image(image, use_container_width=True)
   prediction_binary=import_and_predict_binary(image, classifier1, classifier2, classifier3, weights_binary)
   prediction_MultiClass=import_and_predict_MultiClass(image, classifier4, classifier5, classifier6, weights_MultiClass)
   result=''
