@@ -11,8 +11,8 @@ from streamlit_option_menu import option_menu
 
 st.set_page_config(layout="centered")
 
-@st.cache(allow_output_mutation=True)
-#@st.cache_data(allow_output_mutation=True)
+#@st.cache(allow_output_mutation=True)
+@st.cache_data
 # The Function of Loading the Hybrid CNN Model for Feature Extraction
 
 def load_classifiers():
