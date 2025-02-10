@@ -8,6 +8,8 @@ import requests
 import tensorflow.compat.v1.keras.backend as K
 import pandas as pd
 from streamlit_option_menu import option_menu
+import warnings
+warnings.filterwarnings("ignore")
 
 st.set_page_config(layout="centered")
 
